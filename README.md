@@ -10,6 +10,7 @@ A Future-Aware Framework for Social Navigation" (https://github.com/Zeying-Gong/
 [![RoboSense Challenge](https://img.shields.io/badge/RoboSense-2025-blue)](https://robosense2025.github.io/)
 [![Track 2](https://img.shields.io/badge/Track-Social%20Navigation-green)](https://robosense2025.github.io/track2)
 [![IROS 2025](https://img.shields.io/badge/IROS-2025-red)](https://iros2025.org/)
+[![EvalAI](https://img.shields.io/badge/EvalAI-Online-purple)](https://eval.ai/web/challenges/challenge-page/2557/overview)
 [![License](https://img.shields.io/badge/License-Apache%202.0-yellow)](LICENSE)
 
 **🏆 Prize Pool: $2,000 USD for Track 2 Winners**
