@@ -88,7 +88,7 @@ conda install habitat-sim=0.3.1 withbullet -c conda-forge -c aihabitat
 
 Then, assuming you have [this repositories](https://github.com/Zeying-Gong/habitat-lab) cloned (forked from Habitat 3.0), install necessary dependencies of Habitat.
 ```
-git clone https://github.com/Zeying-Gong/Falcon.git
+git clone --recurse-submodules https://github.com/robosense2025/track2.git # to download the submodule
 cd Falcon
 pip install -e habitat-lab
 pip install -e habitat-baselines
@@ -150,10 +150,9 @@ data
 Note that here the definition of SocialNav is different from the original task in [Habitat 3.0](https://arxiv.org/abs/2310.13724).
 
 
-
 ### 4. Evaluation Falcon Baseline
 
-The pretrained models can be found in [this link](https://drive.google.com/drive/folders/1Bx1L9U345P_9pUfADk3Tnj7uK01EpxZY?usp=sharing). Download it to the root directory.
+The pretrained models can be found in [this link](https://drive.google.com/drive/folders/1Bx1L9U345P_9pUfADk3Tnj7uK01EpxZY?usp=sharing). Download it to `pretrained_model/` under the root directory.
 
 You can evaluate it on the Social-HM3D or Social-MP3D datasets using the following template:
 
@@ -168,6 +167,55 @@ For example, to run it on the Social-HM3D dataset:
 python -u -m habitat-baselines.habitat_baselines.run \
 --config-name=social_nav_v2/falcon_hm3d.yaml
 ```
+
+### 5. Docker Evaluation Environment
+
+We provide a standardized Docker environment for remote evaluation to ensure consistency and reproducibility across all submissions.
+
+#### 🧱 Evaluation Docker Image
+
+All submissions will be evaluated inside the following Docker image:
+
+```bash
+docker pull zeyinggong/robosense_socialnav:v0.5
+```
+
+Participants are strongly encouraged to develop and test their pipelines locally using this image to ensure compatibility with the evaluation server.
+
+#### 📦 Submission Packaging
+
+Submissions will be evaluated inside the container under `/app/Falcon/`. You must place all necessary files in the expected structure as described in the [Submission Format](#submission-format). The evaluator will unzip your `submission.zip` or load your `actions.json` file into `/app/Falcon/input/` inside the container.
+
+- For **Code Submissions (`submission.zip`)**, your `run.sh` entry point will be called directly.
+- For **Action Submissions (`actions.json`)**, the evaluator will automatically invoke:
+
+```bash
+python -u -m habitat_baselines.eval --config-name=falcon_hm3d_replay.yaml
+```
+
+#### 🧪 Local Testing (Recommended)
+
+You can test your submission locally before uploading to EvalAI:
+
+```bash
+docker run --rm -it \
+    --gpus all \
+    --runtime=nvidia \
+    -v /path/to/your/submission:/app/Falcon/input:ro \
+    -v /path/to/your/data:/app/Falcon/data:ro \
+    zeyinggong/robosense_socialnav:v0.5 
+```
+
+Inside the container, navigate to `/app/Falcon/` and manually execute your `run.sh` or replay evaluator command to verify correctness.
+
+> **Tip:** You may refer to the provided [Baseline ZIP Submission Example](https://drive.google.com/file/d/161XBisTHS5AjlEP5_p6904TQpMo8plW9/view?usp=sharing) and [Baseline Action Submission Example](https://drive.google.com/file/d/1N-G9jCuysbuDvTeuYpOCCC9IO9PdDhRS/view?usp=sharing) for reference.
+
+#### ⏱ Evaluation Time
+
+- Minival Phase: typically 5–10 minutes.
+- Phase 1 Full Evaluation: may take 3–5 hours depending on queue length and inference runtime.
+
+If your submission remains pending for over 48 hours, please open an issue on our GitHub repository: [issues](https://github.com/robosense2025/track2/issues). You may also contact us via email at [robosense2025@gmail.com](mailto:robosense2025@gmail.com) if necessary.
 
 ## 🎖️ Challenge Participation
 
