@@ -256,7 +256,7 @@ Our benchmark focuses on two key aspects: **task completion** and **social compl
 
 
 ### Timeline
-- **Registration**: [Google Form](https://forms.gle/robosense2025)
+- **Registration**: [Google Form](https://docs.google.com/forms/d/e/1FAIpQLSdwfvk-NHdQh9-REiBLCjHMcyLT-sPCOCzJU-ux5jbcZLTkBg/viewform)
 - **Phase 1 Deadline**: Public test set evaluation (~190 cases)
 - **Phase 2 Deadline**: Private test set evaluation (~190 cases)
 - **Awards Announcement**: IROS 2025
@@ -269,11 +269,13 @@ Our benchmark focuses on two key aspects: **task completion** and **social compl
 - **Baseline Paper**: [arXiv:2409.13244](https://arxiv.org/pdf/2409.13244)
 - **Baseline Model**: [Google Drive](https://drive.google.com/drive/folders/1Bx1L9U345P_9pUfADk3Tnj7uK01EpxZY)
 
+
 ## 📧 Contact & Support
 
 - **Email**: robosense2025@gmail.com
 - **Official Website**: https://robosense2025.github.io
 - **Issues**: Please use GitHub Issues for technical questions
+
 
 ## 📄 Citation
 
