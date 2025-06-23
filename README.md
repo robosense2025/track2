@@ -272,7 +272,7 @@ Our benchmark focuses on two key aspects: **task completion** and **social compl
 ## 📧 Contact & Support
 
 - **Email**: robosense2025@gmail.com
-- **Challenge Website**: https://robosense2025.github.io/
+- **Official Website**: https://robosense2025.github.io
 - **Issues**: Please use GitHub Issues for technical questions
 
 ## 📄 Citation
