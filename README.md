@@ -1,8 +1,9 @@
-# 🤖 RoboSense Track 2: Social Navigation
+<h1 align="center">🤖 RoboSense Track 2:<br>Social Navigation</h1>
+
 
 <div align="center">
 
-**Official Baseline Implementation for Track 2**
+**Official Baseline Implementation for [Track 2](https://robosense2025.github.io/track2)**
 
 *Based on Falcon -- "From Cognition to Precognition: A Future-Aware Framework for Social Navigation"*<br>(https://github.com/Zeying-Gong/Falcon)
 
