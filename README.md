@@ -57,19 +57,18 @@ This track evaluates an agent's ability to perform socially compliant navigation
 
 ## 📊 Official Dataset
 
-This track uses the **RoboSense Track 2 Social Navigation Dataset**, which is based on the **Social-HM3D** and **Social-MP3D** benchmark and provides:
+This track uses the **RoboSense Track 2 Social Navigation Dataset**, which is based on the **Social-HM3D** benchmark and provides:
 
 - **Goal-driven Trajectories**: Humans navigate with intent, avoiding random or repetitive paths
 - **Natural Behaviors**: Movement includes walking, pausing, and realistic avoidance via ORCA
 - **Balanced Density**: Human count is scaled to scene size, avoiding over- or under-crowding
-- **Diverse Environments**: Includes 844 scenes for Social-HM3D and 72 scenes for Social-MP3D
+- **Diverse Environments**: Includes 844 scenes for Social-HM3D
 
 ### Dataset Statistics
 
 | Dataset         | Num. of Scenes | Scene Types                   | Num. of Humans | Natural Motion |
 |----------------|----------------|-------------------------------|------------|----------------|
 | **Social-HM3D** | 844            | Residence, Office, Shop, etc. | 0–6        | ✔️              |
-| **Social-MP3D** | 72             | Residence, Office, Gym, etc.  | 0–6        | ✔️              |
 
 
 ### Baseline Performance (Phase I)
@@ -110,15 +109,15 @@ pip install -e habitat-lab
 pip install -e habitat-baselines
 ```
 
-### 3. **Downloading the Social-HM3D & Social-MP3D datasets**
+### 3. **Downloading the Social-HM3D datasets （For RoboSense 2025 Competition）**
 
 - Download Scene Datasets
 
-Following the instructions for **HM3D** and **MatterPort3D** in Habitat-lab's [Datasets.md](https://github.com/facebookresearch/habitat-lab/blob/main/DATASETS.md).
+Following the instructions for **HM3D** in Habitat-lab's [Datasets.md](https://github.com/facebookresearch/habitat-lab/blob/main/DATASETS.md).
 
 - Download Episode Datasets
 
-Download social navigation (SocialNav) episodes for the test scenes, which can be found here: [Link](https://drive.google.com/drive/folders/1V0a8PYeMZimFcHgoJGMMTkvscLhZeKzD?usp=drive_link).
+Download social navigation (SocialNav) episodes for the test scenes, which can be found here: [Link](https://huggingface.co/datasets/robosense/datasets/tree/main/track2-social-navigation).
 
 After downloading, unzip and place the datasets in the default location:
 ```
@@ -133,7 +132,7 @@ wget https://github.com/facebookresearch/habitat-lab/files/12502177/spot_walking
 - Download the multi-agent necessary data:
 
 ```
-python -m habitat_sim.utils.datasets_download --uids hab3-episodes habitat_humanoids hab3_bench_assets hab_spot_arm
+python -m habitat_sim.utils.datasets_download --uids habitat_humanoids hab3_bench_assets hab_spot_arm
 ```
 
 The file structure should look like this:
@@ -142,13 +141,6 @@ data
 ├── datasets
 │   └── pointnav
 │       ├── social-hm3d
-│       │   ├── train
-│       │   │   ├── content
-│       │   │   └── train.json.gz
-│       │   └── val
-│       │       ├── content
-│       │       └── val.json.gz
-│       └── social-mp3d
 │           ├── train
 │           │   ├── content
 │           │   └── train.json.gz
@@ -170,7 +162,7 @@ Note that here the definition of SocialNav is different from the original task i
 
 The pretrained models can be found in [this link](https://drive.google.com/drive/folders/1Bx1L9U345P_9pUfADk3Tnj7uK01EpxZY?usp=sharing). Download it to `pretrained_model/` under the root directory.
 
-You can evaluate it on the Social-HM3D or Social-MP3D datasets using the following template:
+You can evaluate it on the Social-HM3D datasets using the following template:
 
 ```
 python -u -m habitat-baselines.habitat_baselines.run \
