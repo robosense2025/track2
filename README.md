@@ -297,8 +297,8 @@ If your submission remains pending for over 48 hours, please open an issue on ou
 ## 🎖️ Challenge Participation
 
 ### Submission Requirements
-1. **Phase 1**: Submit results on public test set with reproducible code
-2. **Phase 2**: Final evaluation on private test set
+1. **Phase 1**: Submit results on public test set 
+2. **Phase 2**: Final evaluation on private test set with reproducible code
 3. **Code**: Submit reproducible code with your final results
 4. **Model**: Include trained model weights
 5. **Report**: Technical report describing your approach
@@ -315,12 +315,37 @@ Our benchmark focuses on two key aspects: **task completion** and **social compl
 | **H-Coll** (Human Collision Rate) | The proportion of episodes involving any human collision. Collisions imply task failure. |
 | **Total Score** | Weighted combination of the core metrics:  **Total = 0.4 × SR + 0.3 × SPL + 0.3 × PSC**. This score reflects overall navigation quality while implicitly penalizing human collisions. |
 
+> Note: The evaluation metrics and scoring formula remain the same for both Phase 1 and Phase 2. The final rankings and awards will be determined exclusively by the results from **Phase 2**. Rankings are based on the `Total Score`, with ties broken by the higher **Success Rate (SR)**.
 
 ### Timeline
 - **Registration**: [Google Form](https://docs.google.com/forms/d/e/1FAIpQLSdwfvk-NHdQh9-REiBLCjHMcyLT-sPCOCzJU-ux5jbcZLTkBg/viewform)
-- **Phase 1 Deadline**: Public test set evaluation (~190 cases)
-- **Phase 2 Deadline**: Private test set evaluation (~190 cases)
-- **Awards Announcement**: IROS 2025
+- **Awards Announcement**: IROS 2025. Awards will only be granted to submissions that have successfully passed the reproducibility audit.
+#### Phase 1 
+
+Public test set evaluation (~1000 episodes)
+
+**Deadline: August 15th, 2025 (AoE)**
+
+**Leaderboard Visibility**: The leaderboard for **Phase 1** is **public**. Your submissions will be visible on the leaderboard as soon as they are successfully evaluated, allowing you to track your progress and compare with other teams.
+
+---
+
+#### Phase 2 
+
+Private test set evaluation (~500 episodes)
+
+**Deadline: September 15th, 2025 (AoE)**
+
+- **Leaderboard Visibility**: The leaderboard for **Phase 2** is **private** and will not be publicly revealed until after the competition concludes. However, participants can see if their own submissions appear on the private leaderboard to confirm that they have been successfully processed and evaluated.
+
+- **Final Submission**: For Phase 2, only a **complete code submission (`submission.zip`)** will be accepted. Your final submission must contain all code, configurations, and trained model weights necessary to reproduce your results.
+
+- **Reproducibility Audit**: The organizing team will audit the submissions of top-performing teams to verify their reproducibility. We will execute your code in the official Docker environment and compare the results with the public leaderboard scores.
+
+- **Disqualification**: Any submission found to be in violation of the rules will be disqualified. This includes, but is not limited to, submissions that:
+    - Do not run an actual inference and simulation pipeline within the container.
+    - Produce a fabricated `result.json` file by bypassing the intended evaluation logic.
+    - Fail to reproduce the results on the leaderboard during the audit process.
 
 ## 🔗 Resources
 
