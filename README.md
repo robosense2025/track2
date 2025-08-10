@@ -374,6 +374,14 @@ If you use the code and dataset in your research, please cite:
   journal = {arXiv preprint arXiv:2409.13244},
   year = {2024}
 }
+
+@article{robosense2025track2,
+  title     = {RoboSense Challenge 2025: Track 2 - Social Navigation},
+  author    = {RoboSense Challenge Organizers},
+  booktitle = {IROS 2025},
+  year      = {2025},
+  url       = {https://robosense2025.github.io/track2}
+}
 ```
 
 
