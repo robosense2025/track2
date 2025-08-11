@@ -334,6 +334,8 @@ Public test set evaluation (~1000 episodes)
 
 Private test set evaluation (~500 episodes)
 
+**Note**: Teams that were unable to submit any evaluations during Phase 1 are still welcome to continue participating in Phase 2. The final ranking will be determined solely by the results from Phase 2.
+
 **Deadline: September 15th, 2025 (AoE)**
 
 - **Leaderboard Visibility**: The leaderboard for **Phase 2** is **private** and will not be publicly revealed until after the competition concludes. However, participants can see if their own submissions appear on the private leaderboard to confirm that they have been successfully processed and evaluated.
