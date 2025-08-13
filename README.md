@@ -241,7 +241,7 @@ Your `run.sh` entry point will be called directly.
 - **Action Submissions (`actions.json`)**: Only supported in **Phase 1**. The evaluator will run:
 
 ```bash
-python -u -m habitat_baselines.eval --config-name=falcon_hm3d_replay.yaml
+python -u -m habitat_baselines.eval --config-name=social_nav_v2/falcon_hm3d_replay.yaml
 ```
 
 > To simplify submissions, all evaluation data directories for Minival, Phase 1, and Phase 2 are mapped to the same location inside the container: `/app/Falcon/data/datasets/pointnav/social-hm3d/minival`. This means your code **only needs to be compatible with a single directory structure** like the one used for minival.
