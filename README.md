@@ -349,6 +349,126 @@ Private test set evaluation (~500 episodes)
     - Produce a fabricated `result.json` file by bypassing the intended evaluation logic.
     - Fail to reproduce the results on the leaderboard during the audit process.
 
+## ❓ FAQ
+
+### 1. Why are my results not showing on the leaderboard?
+
+The most common reason is that your submission did not generate a valid `result.json` file in the expected format. Please ensure your submission:
+- Produces a valid JSON file at `output/result.json`
+- Contains all required metrics: `SR`, `SPL`, `PSC`, `H-Coll`
+- Uses the correct numerical format (floating-point values)
+
+Example of correct format:
+```json
+{
+  "SR": 0.50,
+  "SPL": 0.45,
+  "PSC": 0.60,
+  "H-Coll": 0.02
+}
+```
+
+### 2. How do I handle different dependencies or environment requirements?
+
+If your submission requires additional dependencies:
+- **Minor dependencies**: Add installation commands to your `run.sh` script using conda/pip
+- **Major differences**: Contact us via email (robosense2025@gmail.com), Slack, or WeChat for assistance
+
+Example `run.sh` with dependency installation:
+```bash
+#!/bin/bash
+# Install additional dependencies
+conda install -c conda-forge your_package
+pip install specific_library==1.2.3
+
+# Run your inference
+source activate falcon
+python your_inference_script.py
+```
+
+### 3. What is the correct dataset path for my code?
+
+To simplify evaluation, we use a fixed dataset mount point inside the evaluation Docker container:
+```
+/app/Falcon/data/datasets/pointnav/social-hm3d/minival
+```
+
+**Important**: Your code should always read data from this path, regardless of which phase is being evaluated. Our backend automatically mounts the appropriate dataset for each phase to this location.
+
+### 4. What are the differences between Phase I and Phase II?
+
+All submissions are evaluated inside Docker images with the following versions:
+- **Phase I**: `docker pull zeyinggong/robosense_socialnav:v0.5`
+- **Phase II**: `docker pull zeyinggong/robosense_socialnav:v0.7`
+
+**Key Changes in v0.7**:
+1. **Fixed driver compatibility issues** due to EGL errors
+2. **Multi-environment support**: Phase II supports up to 8 environments for evaluation
+3. **Updated action space**: The action set has been refined to clearly distinguish between **stopping** *(ending an episode)* and **pausing** *(remaining stationary)*. A new **move_backward** action is also introduced.
+
+```
+0 - stop            # now correctly ends the episode
+1 - move_forward
+2 - turn_left
+3 - turn_right
+4 - move_backward   # newly added action for moving backward
+5 - pause           # newly added action for pausing without movement
+```
+
+This action space is fully backward-compatible with Phase I methods.
+
+### 5. How can I test my submission locally?
+
+**For Phase II**, we recommend using Docker image v0.7 for local testing:
+
+```bash
+docker run --rm -it \
+    --gpus all \
+    --runtime=nvidia \
+    -v /path/to/your/submission:/app/Falcon/input:ro \
+    -v /path/to/your/data:/app/Falcon/data:ro \
+    zeyinggong/robosense_socialnav:v0.7
+```
+
+You can manually execute your `run.sh` inside the container to verify correctness.
+
+**Tip**: Refer to the provided [Baseline ZIP Submission Example (Updated)](https://drive.google.com/file/d/1k5tMeocASZhCUL2SFUILqWTszNRYjC4L/view?usp=sharing) for reference.
+
+**Note**: Phase II does not support action submissions since the test dataset is not publicly available.
+
+### 6. How long does evaluation take?
+
+- **Minival Phase**: 5–10 minutes
+- **Phase I Full Evaluation**: 3–5 hours (depending on queue length and inference runtime)
+- **Phase II Full Evaluation**: 2–4 hours (depending on number of environments used, queue length, and inference runtime)
+
+If your submission remains pending for over 48 hours, please:
+- Open an issue on our [GitHub repository](https://github.com/robosense2025/track2/issues)
+- Contact us at robosense2025@gmail.com
+
+### 7. Can I modify the evaluation pipeline or import custom code?
+
+**Yes, we encourage flexible approaches!** You have significant freedom to modify the evaluation pipeline and import your own policy code, including:
+- `Falcon/habitat-baselines/habitat_baselines/eval.py` (main evaluation script)
+- `Falcon/habitat-baselines/habitat_baselines/rl/ppo/falcon_evaluator.py` (evaluator implementation)
+
+You can import and integrate your custom modules, modify the inference pipeline, or adapt the evaluation logic to suit your approach.
+
+**⚠️ However, the following restrictions must be respected:**
+1. **Open-source models only**: You cannot use proprietary pretrained models or private datasets that are not publicly accessible
+2. **No bypassing simulation**: You cannot circumvent the simulator's navigation logic to directly generate result files
+3. **No bypassing evaluation constraints**: You cannot circumvent the restrictions enforced in `falcon_evaluator.py`, including accessing extra environmental information or sensors beyond the allowed observation keys, or any other validation checks
+
+These restrictions ensure fair competition while maintaining the scientific integrity of the challenge.
+
+---
+
+**🆘 Still need help?** If your question isn't answered here, please reach out to us:
+- **Email**: robosense2025@gmail.com
+- **GitHub Issues**: [Track 2 Issues](https://github.com/robosense2025/track2/issues)
+- **Competition Website**: [RoboSense 2025](https://robosense2025.github.io/)
+
+## 🔗 Resources
 ## 🔗 Resources
 
 - **Challenge Website**: [robosense2025.github.io](https://robosense2025.github.io/)
