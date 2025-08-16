@@ -469,7 +469,6 @@ These restrictions ensure fair competition while maintaining the scientific inte
 - **Competition Website**: [RoboSense 2025](https://robosense2025.github.io/)
 
 ## 🔗 Resources
-## 🔗 Resources
 
 - **Challenge Website**: [robosense2025.github.io](https://robosense2025.github.io/)
 - **Track Details**: [Track 2 Page](https://robosense2025.github.io/track2)
