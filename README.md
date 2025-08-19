@@ -415,7 +415,7 @@ All submissions are evaluated inside Docker images with the following versions:
 5 - pause           # newly added action for pausing without movement
 ```
 
-This action space is fully backward-compatible with Phase I methods.
+The two new actions (4-move_backward, 5-pause) are optional. Teams can continue using only actions 0-3 from Phase 1. Therefore, the action space is fully backward-compatible with Phase 1, ensuring smooth transition for existing methods.
 
 ### 5. How can I test my submission locally?
 
